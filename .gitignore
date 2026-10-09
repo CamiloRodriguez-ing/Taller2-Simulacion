@@ -19,6 +19,7 @@ x86/
 [Aa]rm64/
 bld/
 [Bb]uild/
+despliegue/
 
 # Auto-generated reports / temp
 *.tmp

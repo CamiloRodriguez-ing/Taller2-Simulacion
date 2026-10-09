@@ -109,27 +109,29 @@ public class OctaveService
     /// </summary>
     public string ObtenerRutaBaseProyecto()
     {
-        // Verificar el directorio de trabajo actual
-        var dirActual = Directory.GetCurrentDirectory();
-        if (Directory.Exists(Path.Combine(dirActual, "Octave")) && Directory.Exists(Path.Combine(dirActual, "datos")))
-        {
-            return dirActual;
-        }
-
-        // Subir desde el directorio base del ensamblado (ej. CSharp/bin/Debug/net9.0-windows)
+        // 1. Verificar si simulador.m está en el directorio base del ensamblado o en sus padres
         var dirEnsamblado = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
         var actual = dirEnsamblado;
         while (actual != null)
         {
-            if (Directory.Exists(Path.Combine(actual.FullName, "Octave")) && Directory.Exists(Path.Combine(actual.FullName, "datos")))
+            if (File.Exists(Path.Combine(actual.FullName, "Octave", "simulador.m")) ||
+                Directory.Exists(Path.Combine(actual.FullName, "Octave")))
             {
                 return actual.FullName;
             }
             actual = actual.Parent;
         }
 
-        // Si no se encuentra, usar el directorio de trabajo actual
-        return dirActual;
+        // 2. Verificar el directorio de trabajo actual
+        var dirActual = Directory.GetCurrentDirectory();
+        if (File.Exists(Path.Combine(dirActual, "Octave", "simulador.m")) ||
+            Directory.Exists(Path.Combine(dirActual, "Octave")))
+        {
+            return dirActual;
+        }
+
+        // Por defecto usar el directorio del ejecutable
+        return AppDomain.CurrentDomain.BaseDirectory;
     }
 
     /// <summary>
