@@ -17,19 +17,18 @@
    - [3.2. Instalación del SDK de .NET 9](#32-instalación-del-sdk-de-net-9)
    - [3.3. Instalación de GNU Octave](#33-instalación-de-gnu-octave)
    - [3.4. IDE Recomendado](#34-ide-recomendado)
-4. [Estructura del Proyecto](#4-estructura-del-proyecto)
-5. [Instrucciones de Ejecución Paso a Paso](#5-instrucciones-de-ejecución-paso-a-paso)
+4. [Instrucciones de Ejecución Paso a Paso](#5-instrucciones-de-ejecución-paso-a-paso)
    - [Método 1: Desde Terminal (PowerShell / CMD)](#método-1-desde-terminal-powershell--cmd)
    - [Método 2: Ejecutable Directo (.exe)](#método-2-ejecutable-directo-exe)
    - [Método 3: Desde Visual Studio Community](#método-3-desde-visual-studio-community)
    - [Método 4: Batería Automatizada de Pruebas (--test)](#método-4-batería-automatizada-de-pruebas---test)
    - [Método 5: Ejecución Independiente del Script de Octave](#método-5-ejecución-independiente-del-script-de-octave)
-6. [Guía de Uso de la Interfaz Gráfica](#6-guía-de-uso-de-la-interfaz-gráfica)
-7. [Detección Automática de GNU Octave](#7-detección-automática-de-gnu-octave)
-8. [Casos de Prueba para Sustentación](#8-casos-de-prueba-para-sustentación)
-9. [Modelo Físico y Matemático](#9-modelo-físico-y-matemático)
-10. [Criterio de Alcance de la Meta y Casos Límite](#10-criterio-de-alcance-de-la-meta-y-casos-límite)
-11. [Solución de Problemas (FAQ / Troubleshooting)](#11-solución-de-problemas-faq--troubleshooting)
+5. [Guía de Uso de la Interfaz Gráfica](#6-guía-de-uso-de-la-interfaz-gráfica)
+6. [Detección Automática de GNU Octave](#7-detección-automática-de-gnu-octave)
+7. [Casos de Prueba para Sustentación](#8-casos-de-prueba-para-sustentación)
+8. [Modelo Físico y Matemático](#9-modelo-físico-y-matemático)
+9. [Criterio de Alcance de la Meta y Casos Límite](#10-criterio-de-alcance-de-la-meta-y-casos-límite)
+10. [Solución de Problemas (FAQ / Troubleshooting)](#11-solución-de-problemas-faq--troubleshooting)
 
 ---
 
@@ -81,6 +80,7 @@ Para compilar y ejecutar el proyecto se requiere el **.NET 9 SDK (x64)**.
 1. Descarga el instalador oficial desde [Microsoft .NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0).
 2. Ejecuta el instalador y sigue las instrucciones.
 3. Para comprobar la instalación, abre una terminal (PowerShell o CMD) y escribe:
+
    ```powershell
    dotnet --version
    ```
@@ -95,11 +95,13 @@ El motor físico requiere **GNU Octave** (versiones 8.x, 9.x, 10.x u 11.x).
 
 1. Descarga el instalador oficial de Windows (archivo `.exe` o `.zip`) desde [GNU Octave Windows Download](https://octave.org/download#ms-windows).
 2. Instálalo en una de las rutas predeterminadas de Windows, por ejemplo:
+
    * `C:\Program Files\GNU Octave\Octave-11.3.0\`
    * `C:\Program Files\GNU Octave\Octave-9.4.0\`
    * o `C:\Octave\`
 3. **Verificación:**
    Abre una terminal y ejecuta:
+
    ```powershell
    & "C:\Program Files\GNU Octave\Octave-11.3.0\mingw64\bin\octave-cli.exe" --version
    ```
@@ -118,52 +120,7 @@ El motor físico requiere **GNU Octave** (versiones 8.x, 9.x, 10.x u 11.x).
 
 ---
 
-## 4. Estructura del Proyecto
-
-```text
-Taller 2/
-├── CSharp/
-│   ├── Taller2.csproj                # Archivo de proyecto .NET 9 WinForms
-│   ├── Program.cs                    # Punto de entrada (modo GUI y CLI --test)
-│   ├── MainForm.cs                   # Lógica de interfaz, eventos y render GDI+
-│   ├── MainForm.Designer.cs          # Definición visual de controles
-│   ├── Models/                       # Modelos de datos desacoplados
-│   │   ├── ParametrosSimulacion.cs   # DTO de parámetros de entrada
-│   │   ├── PuntoTrayectoria.cs       # Puntos de cinemática (t, x, y, vx, vy, vel)
-│   │   ├── DatoViento.cs             # Datos de viento (t, dir, mag, ax, ay)
-│   │   └── ResultadoSimulacion.cs    # Resumen y métricas de impacto
-│   └── Services/
-│       └── OctaveService.cs          # Integración, ejecución y control de calidad
-│
-├── Octave/
-│   ├── simulador.m                   # Script científico de Octave (física + viento)
-│   └── resultados/                   # Copia de respaldo de resultados
-│
-├── datos/                            # Directorio de intercambio desacoplado
-│   ├── parametros.txt                # Archivo de entrada creado por C#
-│   ├── recorrido.csv                 # Trayectoria física calculada cada 0.5 s
-│   ├── viento.csv                    # Viento aleatorio generado cada 0.5 s
-│   └── estado.txt                    # Resultado de impacto y errores
-│
-├── evidencias/                       # 20 Figuras organizadas para la sustentación
-│   ├── 01_contexto/
-│   ├── 02_modelo/
-│   ├── 03_octave/
-│   ├── 04_integracion/
-│   ├── 05_gui/
-│   ├── 06_animacion/
-│   ├── 07_tablas/
-│   └── 08_pruebas/
-│
-├── Taller2.sln                       # Solución de Visual Studio
-├── README.md                         # Esta guía técnica de requisitos y uso
-├── INFORME_ACADEMICO.md              # Informe académico formal en Markdown
-└── INFORME_ACADEMICO.docx            # Informe académico formal en Word (con figuras)
-```
-
----
-
-## 5. Instrucciones de Ejecución Paso a Paso
+## 4. Instrucciones de Ejecución Paso a Paso
 
 ### Método 1: Desde Terminal (PowerShell / CMD)
 
@@ -231,7 +188,7 @@ Esto generará inmediatamente `datos/recorrido.csv`, `datos/viento.csv` y `datos
 
 ---
 
-## 6. Guía de Uso de la Interfaz Gráfica
+## 5. Guía de Uso de la Interfaz Gráfica
 
 Al iniciar la aplicación, la pantalla se organiza en tres zonas principales:
 
@@ -274,7 +231,7 @@ Al iniciar la aplicación, la pantalla se organiza en tres zonas principales:
 
 ---
 
-## 7. Detección Automática de GNU Octave
+## 6. Detección Automática de GNU Octave
 
 El servicio `CSharp/Services/OctaveService.cs` implementa una estrategia de búsqueda inteligente:
 
@@ -290,7 +247,7 @@ El servicio `CSharp/Services/OctaveService.cs` implementa una estrategia de bús
 
 ---
 
-## 8. Casos de Prueba para Sustentación
+## 7. Casos de Prueba para Sustentación
 
 Para evidenciar el correcto funcionamiento durante la calificación:
 
@@ -305,7 +262,7 @@ Para evidenciar el correcto funcionamiento durante la calificación:
 
 ---
 
-## 9. Modelo Físico y Matemático
+## 8. Modelo Físico y Matemático
 
 1. **Descomposición inicial:**
 
@@ -346,11 +303,12 @@ Para evidenciar el correcto funcionamiento durante la calificación:
 
 ---
 
-## 10. Criterio de Alcance de la Meta y Casos Límite
+## 9. Criterio de Alcance de la Meta y Casos Límite
 
 * **Zona rectangular:** $[X_{obj} - T, X_{obj} + T] \times [Y_{obj} - T, Y_{obj} + T]$ (con $y \ge 0$).
 * **Cruce entre dos fotogramas (Sección 7):**
   Si en el paso $i \rightarrow i+1$ se cumple $x_i < X_{obj}$ y $x_{i+1} \ge X_{obj}$:
+
   $$
   \alpha = \frac{X_{obj} - x_i}{x_{i+1} - x_i}, \quad y_{cruce} = y_i + \alpha (y_{i+1} - y_i), \quad t_{objetivo} = t_i + \alpha \Delta t
   $$
@@ -362,7 +320,7 @@ Para evidenciar el correcto funcionamiento durante la calificación:
 
 ---
 
-## 11. Solución de Problemas (FAQ / Troubleshooting)
+## 10. Solución de Problemas (FAQ / Troubleshooting)
 
 ### 1. ¿Qué hacer si aparece el error "No se encontró GNU Octave"?
 
