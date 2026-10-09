@@ -184,7 +184,32 @@ public partial class MainForm : Form
         }
         catch (FileNotFoundException ex)
         {
-            MessageBox.Show(ex.Message, "GNU Octave no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            var respuesta = MessageBox.Show(
+                ex.Message + "\n\n¿Desea examinar y seleccionar manualmente la ruta a 'octave-cli.exe'?",
+                "GNU Octave No Detectado Automáticamente",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                using var ofd = new OpenFileDialog
+                {
+                    Title = "Seleccionar ejecutable de GNU Octave (octave-cli.exe)",
+                    Filter = "GNU Octave CLI (octave-cli*.exe)|octave-cli*.exe|Ejecutables (*.exe)|*.exe|Todos los archivos (*.*)|*.*",
+                    CheckFileExists = true
+                };
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    _octaveService.RutaOctaveConfigurada = ofd.FileName;
+                    MessageBox.Show(
+                        $"Ruta configurada correctamente:\n{ofd.FileName}\n\nPresione 'SIMULAR LANZAMIENTO' nuevamente.",
+                        "GNU Octave Configurado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+
             RestablecerControles();
         }
         catch (Exception ex)
