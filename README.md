@@ -5,6 +5,10 @@
 > **Taller 2 — Simulación de Computadores**
 > **Institución:** Universidad Pedagógica y Tecnológica de Colombia (UPTC) — Seccional Sogamoso
 > **Escuela:** Escuela de Ingeniería de Sistemas y Computación
+> **Repositorio:** [github.com/CamiloRodriguez-ing/Taller2-Simulacion.git
+> ](https://github.com/CamiloRodriguez-ing/Taller2-Simulacion.git)**Autores:**
+> *Néstor Daniel Rodríguez Silva*
+> *Camilo Andrés Rodríguez Morales*
 
 ---
 
