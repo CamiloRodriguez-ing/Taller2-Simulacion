@@ -1,0 +1,31 @@
+## .NET / Visual Studio
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.svclog
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+bld/
+[Bb]uild/
+
+# Auto-generated reports / temp
+*.tmp
+*.log
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+

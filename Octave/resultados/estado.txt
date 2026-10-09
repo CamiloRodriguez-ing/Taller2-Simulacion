@@ -1,0 +1,8 @@
+estado=OBJETIVO_ALCANZADO
+tiempo_final=1.500
+x_final=28.049
+y_final=1.332
+error_x=3.049
+error_y=0.168
+distancia_objetivo=3.054
+tiempo_objetivo=1.341

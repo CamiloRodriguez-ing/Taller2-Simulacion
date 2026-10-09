@@ -1,0 +1,10 @@
+angulo=25
+velocidad=20
+viento_min=0
+viento_max=1.5
+direccion_min=-30
+direccion_max=30
+objetivo_x=25
+objetivo_y=1.5
+tolerancia=1
+semilla=12345
